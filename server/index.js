@@ -546,13 +546,8 @@ app.delete('/api/tokens/:mongoId', async (req, res) => {
 });
 
 
-// Export app for serverless deployment
-module.exports = app;
-
-// Start server locally if not running serverless
-const PORT = process.env.PORT || 3000;
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Express MongoDB Backend running on http://localhost:${PORT}`);
-  });
-}
+// Start server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Express MongoDB Backend running on http://localhost:${PORT}`);
+});

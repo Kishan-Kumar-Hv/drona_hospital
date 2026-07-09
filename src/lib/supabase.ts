@@ -1,7 +1,7 @@
 // MongoDB Express API Adapter
 // Emulates Supabase JS Client interface and translates queries to HTTP calls to Express/Mongoose server.
 
-const API_BASE = import.meta.env.VITE_API_URL || (typeof window !== 'undefined' && window.location ? window.location.origin : 'http://localhost:3000');
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 let authListeners: Array<(event: string, session: any) => void> = [];
 
 class MockQueryBuilder {
