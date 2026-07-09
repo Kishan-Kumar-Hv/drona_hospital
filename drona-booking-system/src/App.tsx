@@ -12,11 +12,6 @@ import {
   ArrowRight,
   ChevronRight,
   Sparkles,
-  Stethoscope,
-  Activity,
-  Heart,
-  Users,
-  Brain,
   Trash2,
   Lock,
   X,
@@ -67,12 +62,56 @@ interface Toast {
 // Icon mapper for dynamic department rendering
 const IconComponent = ({ name, className }: { name: string; className: string }) => {
   switch (name) {
-    case 'Stethoscope': return <Stethoscope className={className} />;
-    case 'Activity': return <Activity className={className} />;
-    case 'Heart': return <Heart className={className} />;
-    case 'Brain': return <Brain className={className} />;
-    case 'Users': return <Users className={className} />;
-    default: return <Sparkles className={className} />;
+    case 'Tooth':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 3C7 3 5.5 4.5 5.5 7.5C5.5 10.5 7 13.5 7 13.5C7.5 15.5 7.5 18.5 8.5 19.5C9.5 20.5 11 20.5 12 20.5C13 20.5 14.5 20.5 15.5 19.5C16.5 18.5 16.5 15.5 17 13.5C17 13.5 18.5 10.5 18.5 7.5C18.5 4.5 17 3 17 3H7Z" />
+          <path d="M12 3v17.5" />
+          <path d="M10 8.5c0 0 1 .5 2 .5s2-.5 2-.5" />
+        </svg>
+      );
+    case 'Aesthetic':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2C12 2 19 9.5 19 14C19 17.866 15.866 21 12 21C8.13401 21 5 17.866 5 14C5 9.5 12 2 12 2Z" />
+          <path d="M12 11v5" />
+          <path d="M10 13.5h4" />
+        </svg>
+      );
+    case 'Ortho':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="5" r="2" />
+          <path d="M9 13h3v8" />
+          <path d="M12 9h3.5L18 13" />
+          <path d="M7 10l3-1 2 4" />
+        </svg>
+      );
+    case 'General':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M4.5 3v5c0 3.87 3.13 7 7 7s7-3.13 7-7V3" />
+          <path d="M8 3h8" />
+          <path d="M11.5 15v4.5a2.5 2.5 0 0 0 5 0v-1.5" />
+          <circle cx="16.5" cy="18" r="1.5" />
+        </svg>
+      );
+    case 'Gynac':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="9" r="5" />
+          <path d="M12 14v8" />
+          <path d="M9 18h6" />
+        </svg>
+      );
+    case 'Psych':
+      return (
+        <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-5.88 2.5 2.5 0 0 1 2.46-3.06zM14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-5.88 2.5 2.5 0 0 0-2.46-3.06z" />
+        </svg>
+      );
+    default:
+      return <Sparkles className={className} />;
   }
 };
 
@@ -93,12 +132,12 @@ export default function App() {
 
   // Dynamic Lists with Initial Seed Data
   const [departments, setDepartments] = useState<Department[]>([
-    { id: 'dental', name: 'Dental Care', iconName: 'Sparkles', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-    { id: 'skin', name: 'Skin & Aesthetic Care', iconName: 'Sparkles', color: 'text-pink-600 bg-pink-50 border-pink-100' },
-    { id: 'orthopedics', name: 'Orthopedics & Physiotherapy', iconName: 'Activity', color: 'text-blue-600 bg-blue-50 border-blue-100' },
-    { id: 'general-healthcare', name: 'General Healthcare', iconName: 'Stethoscope', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-    { id: 'gynecology', name: 'Gynecology & Women\'s Health', iconName: 'Heart', color: 'text-rose-600 bg-rose-50 border-rose-100' },
-    { id: 'psychology', name: 'Psychology Counselling', iconName: 'Brain', color: 'text-purple-600 bg-purple-50 border-purple-100' },
+    { id: 'dental', name: 'Dental Care', iconName: 'Tooth', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
+    { id: 'skin', name: 'Skin & Aesthetic Care', iconName: 'Aesthetic', color: 'text-pink-600 bg-pink-50 border-pink-100' },
+    { id: 'orthopedics', name: 'Orthopedics & Physiotherapy', iconName: 'Ortho', color: 'text-blue-600 bg-blue-50 border-blue-100' },
+    { id: 'general-healthcare', name: 'General Healthcare', iconName: 'General', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
+    { id: 'gynecology', name: 'Gynecology & Women\'s Health', iconName: 'Gynac', color: 'text-rose-600 bg-rose-50 border-rose-100' },
+    { id: 'psychology', name: 'Psychology Counselling', iconName: 'Psych', color: 'text-purple-600 bg-purple-50 border-purple-100' },
   ]);
 
   const [doctors, setDoctors] = useState<Doctor[]>([
@@ -293,8 +332,11 @@ export default function App() {
       
       {/* Background Graphic Watermark */}
       <div 
-        className="absolute inset-0 z-0 opacity-4 pointer-events-none bg-cover bg-center" 
-        style={{ backgroundImage: `url('https://plain-apac-prod-public.komododecks.com/202607/09/b8Wnz2wQ1ckCLbKMW9r9/image.png')` }} 
+        className="absolute inset-0 z-0 pointer-events-none bg-cover bg-center" 
+        style={{ 
+          backgroundImage: `url('https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1920')`,
+          opacity: 0.12
+        }} 
       />
 
       {/* Floating Toasts */}
