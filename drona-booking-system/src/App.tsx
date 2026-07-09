@@ -27,6 +27,7 @@ interface Department {
   name: string;
   iconName: string;
   color: string;
+  imageUrl: string;
 }
 
 interface Doctor {
@@ -132,12 +133,12 @@ export default function App() {
 
   // Dynamic Lists with Initial Seed Data
   const [departments, setDepartments] = useState<Department[]>([
-    { id: 'dental', name: 'Dental Care', iconName: 'Tooth', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
-    { id: 'skin', name: 'Skin & Aesthetic Care', iconName: 'Aesthetic', color: 'text-pink-600 bg-pink-50 border-pink-100' },
-    { id: 'orthopedics', name: 'Orthopedics & Physiotherapy', iconName: 'Ortho', color: 'text-blue-600 bg-blue-50 border-blue-100' },
-    { id: 'general-healthcare', name: 'General Healthcare', iconName: 'General', color: 'text-indigo-600 bg-indigo-50 border-indigo-100' },
-    { id: 'gynecology', name: 'Gynecology & Women\'s Health', iconName: 'Gynac', color: 'text-rose-600 bg-rose-50 border-rose-100' },
-    { id: 'psychology', name: 'Psychology Counselling', iconName: 'Psych', color: 'text-purple-600 bg-purple-50 border-purple-100' },
+    { id: 'dental', name: 'Dental Care', iconName: 'Tooth', color: 'text-emerald-600 bg-emerald-50 border-emerald-100', imageUrl: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=compress&cs=tinysrgb&w=150&q=80' },
+    { id: 'skin', name: 'Skin & Aesthetic Care', iconName: 'Aesthetic', color: 'text-pink-600 bg-pink-50 border-pink-100', imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=compress&cs=tinysrgb&w=150&q=80' },
+    { id: 'orthopedics', name: 'Orthopedics & Physiotherapy', iconName: 'Ortho', color: 'text-blue-600 bg-blue-50 border-blue-100', imageUrl: 'https://images.unsplash.com/photo-1597764690523-15bea4c581c9?auto=compress&cs=tinysrgb&w=150&q=80' },
+    { id: 'general-healthcare', name: 'General Healthcare', iconName: 'General', color: 'text-indigo-600 bg-indigo-50 border-indigo-100', imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=compress&cs=tinysrgb&w=150&q=80' },
+    { id: 'gynecology', name: 'Gynecology & Women\'s Health', iconName: 'Gynac', color: 'text-rose-600 bg-rose-50 border-rose-100', imageUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=compress&cs=tinysrgb&w=150&q=80' },
+    { id: 'psychology', name: 'Psychology Counselling', iconName: 'Psych', color: 'text-purple-600 bg-purple-50 border-purple-100', imageUrl: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=compress&cs=tinysrgb&w=150&q=80' },
   ]);
 
   const [doctors, setDoctors] = useState<Doctor[]>([
@@ -313,7 +314,8 @@ export default function App() {
       id,
       name: newDeptName.trim(),
       iconName: newDeptIcon,
-      color
+      color,
+      imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=compress&cs=tinysrgb&w=150&q=80'
     };
 
     setDepartments(prev => [...prev, newDept]);
@@ -693,7 +695,7 @@ export default function App() {
                     <div className="space-y-6">
                       <div>
                         <h2 className="text-lg font-bold text-slate-950 mb-4">1. Choose clinical department</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                           {departments.map((dept) => {
                             const isSelected = selectedDept === dept.id;
                             return (
@@ -701,16 +703,23 @@ export default function App() {
                                 key={dept.id}
                                 type="button"
                                 onClick={() => handleDeptSelect(dept.id)}
-                                className={`p-4 rounded-xl border text-left flex flex-col justify-between h-28 transition-all hover:scale-101 hover:shadow-xs ${
+                                className={`p-4 rounded-xl border text-left flex justify-between items-center h-28 transition-all hover:scale-101 hover:shadow-xs ${
                                   isSelected 
                                     ? 'border-red-600 ring-2 ring-red-600/10 bg-red-50/10' 
                                     : 'border-slate-200 hover:border-slate-300 bg-white'
                                 }`}
                               >
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center border ${dept.color}`}>
-                                  <IconComponent name={dept.iconName} className="w-5 h-5" />
+                                <div className="flex flex-col justify-between h-full pr-2">
+                                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center border ${dept.color}`}>
+                                    <IconComponent name={dept.iconName} className="w-5 h-5" />
+                                  </div>
+                                  <span className="font-bold text-xs md:text-sm text-slate-950 leading-tight mt-2">{dept.name}</span>
                                 </div>
-                                <span className="font-bold text-xs md:text-sm text-slate-900 leading-tight">{dept.name}</span>
+                                <img 
+                                  src={dept.imageUrl} 
+                                  alt={dept.name} 
+                                  className="w-16 h-16 rounded-xl object-cover border border-slate-100 flex-shrink-0 shadow-xxs" 
+                                />
                               </button>
                             );
                           })}
